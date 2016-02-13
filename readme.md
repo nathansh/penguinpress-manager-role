@@ -7,6 +7,16 @@ This plugin defines a manager user role that is permitted to administrate all as
 
 This is designed to deal with a common issue in the client services: how to give the client admin access, while still removing anything that could break the site.
 
+## Filters
+
+| Filter                                   | Description                                    |
+| ---------------------------------------- | ---------------------------------------------- |
+| `pp-manager-role/capabilities`           | The array of capabilities for the manager role |
+| `pp-manager-role/admin-page-description` | The intro text on the admins listing page      |
+
+
+
+
 ## Must-use plugin
 This plugin is written in a single file to make it easy to use as a must-use plugin without a must-use plugin loader.
 

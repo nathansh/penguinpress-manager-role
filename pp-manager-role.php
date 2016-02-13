@@ -197,9 +197,12 @@ function pp_manager_options_page_listing_admins() {
 
 	echo '<div class="wrap">';
 
-		echo '<h1>Administrators</h1>';
+		echo '<h1>' . __( 'Administrators' ) . '</h1>';
 
-		echo '<p class="description">The following administrators are able to manage every technical aspect of this website.</p>';
+		echo '<p class="description">';
+			$description = __( 'The following administrators are able to manage every technical aspect of this website.' );
+			echo apply_filters( 'pp-manager-role/admin-page-description', $description );
+		echo '<p>';
 
 		$user_query = new WP_User_Query(array(
 			'role' => 'administrator'
