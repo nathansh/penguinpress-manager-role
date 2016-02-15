@@ -1,4 +1,4 @@
-# PressPenguin - Manager Role
+# PenguinPress - Manager Role
 This plugin defines a manager user role that is permitted to administrate all aspects of a WordPress site with a few exceptions:
 
 * Enabling/disabling plugins
