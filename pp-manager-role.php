@@ -21,8 +21,6 @@
  */
 function pp_manager_role_add_role() {
 
-	remove_role( 'manager' );
-
 	add_role(
 		'manager',
 		__( 'Manager' ),
