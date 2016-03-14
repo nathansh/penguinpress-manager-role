@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: PenguinPress Manager Role
- * Plugin URI:  https://github.com/nathansh/pp-manager-role
+ * Plugin URI:  https://github.com/nathansh/penguinpress-manager-role
  * Description: Defines a manager role, similar to admin but unable to change theme or plugins. Useful for the website owner.
  * Version:     1.0b
  * Author:      Nathan Shubert-Harbison
@@ -10,7 +10,7 @@
  * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
  *
  *
- * @package pp-manager-role
+ * @package presspenguin-manager-role
  * @author  Nathan Shubert-Harbison <hello@nathansh.com>
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  */
