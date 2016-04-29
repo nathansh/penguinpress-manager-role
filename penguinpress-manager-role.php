@@ -132,13 +132,13 @@ add_filter( 'user_row_actions', 'pp_manager_role_cant_edit_administrator', 10, 2
 function pp_manager_filter_user_table_query( $args ) {
 
 	// Remove administrators from managers
-	if ( current_user_can('manager') ) {	
+	if ( current_user_can('manager') ) {
 		$args['exclude'] = array(1);
 	}
 
 	return $args;
 
-	
+
 }
 
 add_filter( 'users_list_table_query_args', 'pp_manager_filter_user_table_query', 1, 10);
@@ -150,7 +150,7 @@ add_filter( 'users_list_table_query_args', 'pp_manager_filter_user_table_query',
 function pp_manager_filter_views_users( $views ) {
 
 	// Remove administrators from managers
-	if ( current_user_can('manager') ) {	
+	if ( current_user_can('manager') ) {
 		if ( array_key_exists('administrator', $views) ) {
 			unset( $views['administrator'] );
 		}
@@ -221,9 +221,32 @@ function pp_manager_options_page_listing_admins() {
 				echo '</li>';
 
 			}
-			
+
 		}
 
 	echo '</div>';
 
 }
+
+
+/*
+ * Modifying TinyMCE editor to remove unused items.
+ */
+function pp_manager_modify_tiny_mca( $init ) {
+
+	// Only do this for non-admins
+
+	if ( ! current_user_can( 'manage_options' ) ) {
+
+		$init['block_formats'] = apply_filters( 'pp-utils/editor/formats', 'Paragraph=p;Header 2=h2;Header 3=h3;Header 4=h4' );
+		$init['toolbar1'] = apply_filters( 'pp-utils/editor/toolbar1', 'formatselect,bold,italic,underline,strikethrough,bullist,numlist,blockquote,link,unlink,spellchecker' );
+		$init['toolbar2'] = apply_filters( 'pp-utils/editor/toolbar2', '' );
+
+	}
+
+
+	return $init;
+
+}
+
+add_filter( 'tiny_mce_before_init', 'pp_manager_modify_tiny_mca', 1, 10 );
