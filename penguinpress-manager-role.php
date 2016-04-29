@@ -230,7 +230,8 @@ function pp_manager_options_page_listing_admins() {
 
 
 /*
- * Modifying TinyMCE editor to remove unused items.
+ * Modifying TinyMCE editor to remove unused items
+
  */
 function pp_manager_modify_tiny_mca( $init ) {
 
@@ -250,3 +251,37 @@ function pp_manager_modify_tiny_mca( $init ) {
 }
 
 add_filter( 'tiny_mce_before_init', 'pp_manager_modify_tiny_mca', 1, 10 );
+
+
+
+/**
+ * Set tinymce as the default editor always for non-admins
+ *
+ */
+function pp_manager_set_default_editor() {
+
+	if ( ! current_user_can( 'manage_options' ) ) {
+
+		return 'tinymce';
+
+	}
+}
+
+add_filter( 'wp_default_editor', 'pp_manager_set_default_editor' );
+
+
+/**
+ * Hide the text editor link for non-admins
+ *
+ */
+function pp_manager_hide_text_editor_link() {
+
+	if ( ! current_user_can( 'manage_options' ) ) {
+
+		echo '<style>.wp-editor-tabs{display: none;}</style>';
+
+	}
+
+}
+
+add_action( 'admin_head', 'pp_manager_hide_text_editor_link' );
