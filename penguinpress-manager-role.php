@@ -25,60 +25,90 @@ function pp_manager_role_add_role() {
 		'manager',
 		__( 'Manager' ),
 		apply_filters( 'pp-manager-role/capabilities', array (
-			'read' => true,
-			'edit_pages' => true,
-			'publish_pages' => true,
-			'edit_others_pages' => true,
-			'edit_published_pages' => true,
-			'delete_pages' => true,
-			'delete_others_pages' => true,
-			'delete_published_pages' => true,
-			'delete_others_posts' => true,
-			'delete_private_posts' => true,
-			'edit_private_posts' => true,
-			'read_private_posts' => true,
-			'delete_private_pages' => true,
-			'edit_private_pages' => true,
-			'read_private_pages' => true,
-			'delete_published_posts	' => true,
-			'delete_posts' => true,
-			'publish_posts' => true,
-			'edit_published_posts' => true,
-			'edit_others_posts' => true,
-			'edit_posts' => true,
-			'delete_plugins' => false,
-			'delete_themes' => false,
-			'delete_users' => true,
+
+			/* themes/plugins */
+			'switch_themes' => false,
+			'edit_themes' => false,
+			'activate_plugins' => false,
+			'edit_plugins' => false,
+			'edit_users' => true,
+
+			/* options, etc */
+			'manage_options' => false,
+			'moderate_comments' => true,
+			'manage_categories' => true,
+			'manage_links' => false,
+			'upload_files' => true,
 			'unfiltered_html' => true,
 			'import' => false,
 			'export' => false,
-			'upload_files' => true,
-			'manage_links' => false,
-			'manage_categories' => true,
-			'moderate_comments' => true,
-			'manage_options' => false,
-			'promote_users' => false,
-			'remove_users' => true,
+
+			/* content */
+			'read' => true,
+			'delete' => true,
+
+			/* posts */
+			'publish_posts' => true,
+			'read_private_posts' => true,
+			'edit_posts' => true,
+			'edit_others_posts' => true,
+			'edit_published_posts' => true,
+			'edit_private_posts' => true,
+			'delete_posts' => true,
+			'delete_others_posts' => true,
+			'delete_published_posts' => true,
+			'delete_private_posts' => true,
+
+			/* pages */
+			'publish_pages' => true,
+			'read_private_pages' => true,
+
+			'edit_pages' => true,
+			'edit_others_pages' => true,
+			'edit_published_pages' => true,
+			'edit_private_pages' => true,
+			'delete_pages' => true,
+			'delete_others_pages' => true,
+			'delete_published_pages' => true,
+			'delete_private_pages' => true,
+
+			/* plugins/themes */
+			'delete_plugins' => false,
+			'delete_themes' => false,
 			'update_core' => false,
 			'update_plugins' => false,
 			'update_themes' => false,
 			'edit_files' => false,
-			'create_users' => true,
-			'edit_users' => true,
 			'install_plugins' => false,
-			'edit_plugins' => false,
-			'activate_plugins' => false,
 			'install_themes' => false,
+
+			/* users */
+			'delete_users' => true,
+			'promote_users' => false,
+			'remove_users' => true,
+			'create_users' => true,
 			'list_users' => true,
-			'edit_theme_options' => true,
-			'edit_themes' => false,
-			'switch_themes' => false
+			'edit_theme_options' => true
+
 		) )
 	);
 
 }
 
 add_action( 'init', 'pp_manager_role_add_role' );
+
+
+/**
+ * On plugin deactivation remove the role, usefull for debug
+ *
+ */
+function pp_manager_role_deactivate() {
+
+	remove_role( 'manager' );
+
+}
+
+register_deactivation_hook( __FILE__, 'pp_manager_role_deactivate' );
 
 
 /**
