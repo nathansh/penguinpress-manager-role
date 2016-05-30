@@ -21,6 +21,8 @@
  */
 function pp_manager_role_add_role() {
 
+	remove_role( 'manager' );
+
 	add_role(
 		'manager',
 		__( 'Manager' ),
@@ -88,7 +90,22 @@ function pp_manager_role_add_role() {
 			'remove_users' => true,
 			'create_users' => true,
 			'list_users' => true,
-			'edit_theme_options' => true
+			'edit_theme_options' => true,
+
+			// Visual Form Builder Pro
+			'vfb_read' => true,
+			'vfb_create_forms' => true,
+			'vfb_edit_forms' => true,
+			'vfb_copy_forms' => true,
+			'vfb_delete_forms' => true,
+			'vfb_import_forms' => true,
+			'vfb_export_forms' => true,
+			'vfb_edit_email_design' => true,
+			'vfb_view_entries' => true,
+			'vfb_edit_entries' => true,
+			'vfb_delete_entries' => true,
+			'vfb_edit_settings' => true,
+			'vfb_uninstall_plugin' => true
 
 		) )
 	);
